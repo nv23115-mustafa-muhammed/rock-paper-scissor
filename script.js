@@ -23,9 +23,9 @@ function displayRoundResult(message) {
 
 function announceWinner() {
     if (humanScore === 5) {
-        finalResultDisplay.textContent = "Why the fck are you playing against a damn robot and being happy about winning 🫵🤣🤓";
+        finalResultDisplay.textContent = "Why the fck are you playing against a damn robot and being happy about winning 🫵🤡🤓";
     } else if (computerScore === 5) {
-        finalResultDisplay.textContent = "Negga imagine losing to a fking robot 🫵🤣🤡";
+        finalResultDisplay.textContent = "Negga imagine losing to a fcking robot 🫵🤣🤡";
     }
     document.body.appendChild(finalResultDisplay);
     const buttons = document.querySelectorAll('.choice-button');
@@ -45,10 +45,10 @@ function playRound(playerSelection) {
         (playerSelection === "paper" && computerSelection === "rock") ||
         (playerSelection === "scissors" && computerSelection === "paper")
     ) {
-        displayRoundResult(`You win! ${playerSelection} beats ${computerSelection}.`);
+        displayRoundResult(`You happy you won kid? 🫵🤣`);
         humanScore++;
     } else {
-        displayRoundResult(`You lose! ${computerSelection} beats ${playerSelection}.`);
+        displayRoundResult(`Just imagine losing to a npc negga 💀`);
         computerScore++;
     }
 
