@@ -23,9 +23,9 @@ function displayRoundResult(message) {
 
 function announceWinner() {
     if (humanScore === 5) {
-        finalResultDisplay.textContent = "Congratulations! You are the overall winner!";
+        finalResultDisplay.textContent = "Why the fck are you playing against a damn robot and being happy about winning 🫵🤣🤓";
     } else if (computerScore === 5) {
-        finalResultDisplay.textContent = "Sorry! The computer is the overall winner.";
+        finalResultDisplay.textContent = "Negga imagine losing to a fking robot 🫵🤣🤡";
     }
     document.body.appendChild(finalResultDisplay);
     const buttons = document.querySelectorAll('.choice-button');
