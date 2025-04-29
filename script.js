@@ -39,7 +39,7 @@ function playRound(playerSelection) {
     playerSelection = playerSelection.toLowerCase();
 
     if (playerSelection === computerSelection) {
-        displayRoundResult(`It's a tie! Both chose ${playerSelection}.`);
+        displayRoundResult(`Ur playing against a robot and still get a tie, u can't win 💀`);
     } else if (
         (playerSelection === "rock" && computerSelection === "scissors") ||
         (playerSelection === "paper" && computerSelection === "rock") ||
