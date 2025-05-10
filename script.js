@@ -4,45 +4,100 @@ function getComputerChoice() {
     return choices[randomIndex];
 }
 
-function getHumanChoice() {
-    return prompt("Enter your choice (rock, paper, or scissors):");
-}
-
 let humanScore = 0;
 let computerScore = 0;
 
-function playRound(humanChoice, computerChoice) {
-    humanChoice = humanChoice.toLowerCase();
+const resultDiv = document.createElement('div');
+const playerScoreDisplay = document.createElement('p');
+const computerScoreDisplay = document.createElement('p');
+const finalResultDisplay = document.createElement('p');
 
-    if (humanChoice === computerChoice) {
-        console.log(`It's a tie! Both chose ${humanChoice}.`);
-        return;
+function updateDisplay() {
+    playerScoreDisplay.textContent = `Player Score: ${humanScore}`;
+    computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;
+}
+
+function displayRoundResult(message) {
+    resultDiv.textContent = message;
+}
+
+function announceWinner() {
+    if (humanScore === 5) {
+        finalResultDisplay.textContent = "Why the fck are you playing against a damn robot and being happy about winning 🫵🤡🤓";
+    } else if (computerScore === 5) {
+        finalResultDisplay.textContent = "Negga imagine losing to a fcking robot 🫵🤣🤡";
     }
+    document.body.appendChild(finalResultDisplay);
+    const buttons = document.querySelectorAll('.choice-button');
+    buttons.forEach(button => {
+        button.disabled = true;
+    });
+}
 
-    if (
-        (humanChoice === "rock" && computerChoice === "scissors") ||
-        (humanChoice === "paper" && computerChoice === "rock") ||
-        (humanChoice === "scissors" && computerChoice === "paper")
+function playRound(playerSelection) {
+    const computerSelection = getComputerChoice();
+    playerSelection = playerSelection.toLowerCase();
+
+    if (playerSelection === computerSelection) {
+        displayRoundResult(`Ur playing against a robot and still get a tie, u can't win 💀`);
+    } else if (
+        (playerSelection === "rock" && computerSelection === "scissors") ||
+        (playerSelection === "paper" && computerSelection === "rock") ||
+        (playerSelection === "scissors" && computerSelection === "paper")
     ) {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
+        displayRoundResult(`You happy you won kid? 🫵🤣`);
         humanScore++;
     } else {
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
+        displayRoundResult(`Just imagine losing to a npc negga 💀`);
         computerScore++;
     }
+
+    updateDisplay();
+
+    if (humanScore === 5 || computerScore === 5) {
+        announceWinner();
+    }
+    console.log(`Player chose: ${playerSelection}, Computer chose: ${computerSelection}`);
+    console.log(`Current Score - You: ${humanScore}, Computer: ${computerScore}`);
 }
 
-for (let i = 0; i < 5; i++) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const buttonsDiv = document.createElement('div');
+    const rockButton = document.createElement('button');
+    rockButton.textContent = 'Rock';
+    rockButton.value = 'rock';
+    rockButton.classList.add('choice-button');
 
-console.log(`Final Score - You: ${humanScore}, Computer: ${computerScore}`);
-if (humanScore > computerScore) {
-    console.log("Congratulations! You are the overall winner!");
-} else if (computerScore > humanScore) {
-    console.log("Sorry! The computer is the overall winner.");
-} else {
-    console.log("It's an overall tie!");
-}
+    const paperButton = document.createElement('button');
+    paperButton.textContent = 'Paper';
+    paperButton.value = 'paper';
+    paperButton.classList.add('choice-button');
+
+    const scissorsButton = document.createElement('button');
+    scissorsButton.textContent = 'Scissors';
+    scissorsButton.value = 'scissors';
+    scissorsButton.classList.add('choice-button');
+
+    buttonsDiv.appendChild(rockButton);
+    buttonsDiv.appendChild(paperButton);
+    buttonsDiv.appendChild(scissorsButton);
+    document.body.appendChild(buttonsDiv);
+
+    document.body.appendChild(playerScoreDisplay);
+    document.body.appendChild(computerScoreDisplay);
+    document.body.appendChild(resultDiv);
+
+    updateDisplay(); // Initial display of scores
+
+    rockButton.addEventListener('click', function() {
+        playRound(this.value);
+    });
+
+    paperButton.addEventListener('click', function() {
+        playRound(this.value);
+    });
+
+    scissorsButton.addEventListener('click', function() {
+        playRound(this.value);
+    });
+});
